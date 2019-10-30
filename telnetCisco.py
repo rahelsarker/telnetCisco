@@ -13,8 +13,11 @@ if b"Username" in terminal:
 	terminal = connectTelnet.read_until(b">")
 	print("Login Success\n", terminal.decode("ascii"))
 	connectTelnet.write(b"enable" + b"\n")
-	terminal = connectTelnet.read_until(b"#")
-	print(terminal.decode("ascii"))
+	terminal = connectTelnet.read_all()
+	if b"Password:" in terminal:
+		connectTelnet.write(PASSWORD.encode('ascii') + "\n".encode('ascii'))
+	else:
+		print(terminal.decode("ascii"))
 	connectTelnet.write(b"configure terminal" + b"\n")
 	terminal = connectTelnet.read_until(b"#")
 	print(terminal.decode("ascii"))
