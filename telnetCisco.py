@@ -13,7 +13,7 @@ def terminalConnect(terminalCommand, commandType):
 	print(terminal.decode("ascii"))
 
 terminalConnect(USERNAME, ":")
-terminalConnect(PASSWORD, ":")
+terminalConnect(PASSWORD, ">")
 terminalConnect("enable", ":")
 terminalConnect(PASSWORD, "#")
 
