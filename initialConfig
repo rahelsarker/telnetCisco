@@ -1,0 +1,10 @@
+configure terminal
+interface vlan 1
+no shutdown
+ip address 10.0.0.10 255.255.255.0
+username cisco password 0 cisco
+enable password 0 cisco
+line vty 0 4
+password cisco
+login local
+end
