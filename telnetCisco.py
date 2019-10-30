@@ -5,16 +5,17 @@ HOST = "10.0.0.10"
 #print("USERNAME: ", USERNAME, "\nPASSWORD: ", PASSWORD)
 connectTelnet = telnetlib.Telnet(HOST)
 
-def terminalConnect(terminalCommand):
-	terminal = connectTelnet.read_until("#".encode('ascii'), 2)
+def terminalConnect(terminalCommand, commandType):
+	terminal = connectTelnet.read_until(commandType.encode('ascii'), 2)
 	print( terminal.decode("ascii"))
 	connectTelnet.write(terminalCommand.encode('ascii') + "\n".encode('ascii'))
-	terminal = connectTelnet.read_until(b"#", 2)
+	terminal = connectTelnet.read_until(commandType.encode('ascii'), 2)
 	print(terminal.decode("ascii"))
 
-terminalConnect(USERNAME)
-terminalConnect(PASSWORD)
-terminalConnect("enable")
+terminalConnect(USERNAME, ":")
+terminalConnect(PASSWORD, ":")
+terminalConnect("enable", ":")
+terminalConnect(PASSWORD, "#")
 
 #if b"Username" in terminal:
 #	connectTelnet.write(USERNAME.encode('ascii') + "\n".encode('ascii'))
