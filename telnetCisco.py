@@ -7,7 +7,9 @@ connectTelnet = telnetlib.Telnet(HOST)
 terminal = connectTelnet.read_until(":".encode('ascii'))
 
 if b"Username" in terminal:
-	connectTelnet.write(USERNAME.encode('ascii') + "\n".encode('ascii') + PASSWORD.encode('ascii'))
+	connectTelnet.write(USERNAME.encode('ascii') + "\n".encode('ascii'))
+	terminal = connectTelnet.read_until(b":")
+	connectTelnet.write(PASSWORD.encode('ascii') + "\n".encode('ascii'))
 	terminal = connectTelnet.read_until(b">")
 	print("Login Success\n", terminal.decode("ascii"))
 else:
