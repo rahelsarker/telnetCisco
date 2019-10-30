@@ -4,12 +4,13 @@ PASSWORD = "cisco"
 HOST = "10.0.0.10"
 #print("USERNAME: ", USERNAME, "\nPASSWORD: ", PASSWORD)
 connectTelnet = telnetlib.Telnet(HOST)
-terminal = connectTelnet.read_until(":".encode('ascii'), 2)
 
 def terminalConnect(terminalCommand):
+	terminal = connectTelnet.read_until("#".encode('ascii'), 2)
+	print(terminal.decode("ascii"), terminalCommand)
 	connectTelnet.write(USERNAME.encode('ascii') + "\n".encode('ascii'))
 	terminal = connectTelnet.read_until(b"#", 2)
-	print(terminal.decode("ascii"), terminalCommand)
+	print(terminal.decode("ascii"))
 
 terminalConnect(USERNAME.encode('ascii'))
 
