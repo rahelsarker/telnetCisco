@@ -7,12 +7,12 @@ connectTelnet = telnetlib.Telnet(HOST)
 
 def terminalConnect(terminalCommand):
 	terminal = connectTelnet.read_until("#".encode('ascii'), 2)
-	print(terminal.decode("ascii"), terminalCommand)
-	connectTelnet.write(USERNAME.encode('ascii') + "\n".encode('ascii'))
+	print(terminal.decode("ascii"))
+	connectTelnet.write(terminalCommand.encode('ascii') + "\n".encode('ascii'))
 	terminal = connectTelnet.read_until(b"#", 2)
 	print(terminal.decode("ascii"))
 
-terminalConnect(USERNAME.encode('ascii'))
+terminalConnect(USERNAME)
 
 #if b"Username" in terminal:
 #	connectTelnet.write(USERNAME.encode('ascii') + "\n".encode('ascii'))
