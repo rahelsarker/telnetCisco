@@ -6,11 +6,12 @@ HOST = "10.0.0.10"
 connectTelnet = telnetlib.Telnet(HOST)
 terminal = connectTelnet.read_until(":".encode('ascii'), 2)
 
-def terminalConnect(terminalCommand)
+def terminalConnect(terminalCommand):
 	connectTelnet.write(USERNAME.encode('ascii') + "\n".encode('ascii'))
 	terminal = connectTelnet.read_until(b"#", 2)
 	print(terminal.decode("ascii"), terminalCommand)
-tOutput = terminalConnect(USERNAME.encode('ascii'))
+
+terminalConnect(USERNAME.encode('ascii'))
 
 #if b"Username" in terminal:
 #	connectTelnet.write(USERNAME.encode('ascii') + "\n".encode('ascii'))
